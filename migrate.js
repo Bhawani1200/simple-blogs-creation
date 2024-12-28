@@ -1,7 +1,10 @@
-const { connection } = require("@/db/db");
-const { migrate } = require("drizzle-orm/postgres/migrator");
 
-(async () => {
-  await migrate(db, { migrationsFolder: "./drizzle" });
-  await connection.end();
-})();
+import {connection, db} from "./src/db/db"
+import {migrate} from "drizzle-orm/postgres-js/migrator"
+
+(
+    async()=>{
+        await migrate(db,{migrationsFolder : "./drizzle"})
+        await connection.end()
+    }
+)()
