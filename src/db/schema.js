@@ -1,11 +1,11 @@
 import { sql } from "drizzle-orm";
-import { PgTable, serial, text, timestamp, varchar } from "drizzle-orm/pg-core";
+import { pgTable, serial, text, timestamp, varchar } from "drizzle-orm/pg-core";
 
-export const recipes = PgTable("recipes", {
+export const recipes = pgTable("recipes", {
   id: serial("id").primaryKey(),
-  name: varchar("name", { length: 50 }).notNull(),
-  description: text("description", { length: 50 }).notNull(),
+  name: varchar("name", { length: 50 }).notNull().unique(),
+  description: text("description").notNull(),
   subname: varchar("subname", { length: 100 }),
-  createdAt: timestamp("created_at").default(sql`CURRENT_TIMESTAMP`),
-  updatedAt: timestamp("updated_at").$default(sql`CURRENT_TIMESTAMP`),
+  createdat: timestamp("created_at").default(sql`CURRENT_TIMESTAMP`),
+  updatedat: timestamp("updated_at").default(sql`CURRENT_TIMESTAMP`),
 });
