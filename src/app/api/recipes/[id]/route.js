@@ -33,7 +33,7 @@ export async function GET(request, response) {
 export async function DELETE(request, response) {
   const id = response.params.id * 1;
   try {
-    await db.select(recipes).where(eq(recipes.id, id));
+    await db.delete(recipes).where(eq(recipes.id, id));
     return Response.json(
       {
         message: "Data deleted successfully",
